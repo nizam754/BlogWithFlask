@@ -12,6 +12,9 @@
     "gmail-user": "grhello754@gmail.com",
     "gmail-password": "fxtzgvrnllqterxb",
     "about-text": "Hi my name is Nizam, I create IT related tutorials",
-    "no_of_posts": 5
+    "no_of_posts": 5,
+    "login_image": "bootstrap-logo.svg",
+    "admin_user": "nizam",
+    "admin_password": "nizam"
   }
 }
