@@ -80,6 +80,23 @@ def dashboard():
     return render_template('login.html', params=params)
 
 
+@app.route("/edit/<string:sno>", methods=['GET', 'POST'])
+def edit(sno):
+    if 'user' in session and session['user'] == params['admin_user']:
+        if request.method == 'POST':
+            box_title = request.form.get('title')
+            tline = request.form.get('tline')
+            slug = request.form.get('slug')
+            content = request.form.get('content')
+            img_file = request.form.get('img_file')
+
+            if sno == '0':
+                post = Posts(title=box_title, slug=slug, content=content, tagline=tline, img_file=img_file)
+                db.session.add(post)
+                db.session.commit()
+
+        return render_template('edit.html', params=params)
+
 @app.route("/contact", methods=['GET', 'POST'])
 def contact():
     if request.method == 'POST':
