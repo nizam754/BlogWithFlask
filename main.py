@@ -89,13 +89,15 @@ def edit(sno):
             slug = request.form.get('slug')
             content = request.form.get('content')
             img_file = request.form.get('img_file')
+            date = datetime.now()
 
             if sno == '0':
-                post = Posts(title=box_title, slug=slug, content=content, tagline=tline, img_file=img_file)
+                post = Posts(title=box_title, slug=slug, content=content, tagline=tline, img_file=img_file, date=date)
                 db.session.add(post)
                 db.session.commit()
 
-        return render_template('edit.html', params=params)
+        return render_template('edit.html', params=params, sno=sno)
+
 
 @app.route("/contact", methods=['GET', 'POST'])
 def contact():
