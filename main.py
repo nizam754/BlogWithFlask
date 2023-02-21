@@ -1,7 +1,9 @@
 from flask import Flask, render_template, request, session, redirect
 from flask_sqlalchemy import SQLAlchemy
+from werkzeug import secure_filename
 from flask_mail import Mail
 import json
+import os
 from datetime import datetime
 
 with open('config.json', 'r') as c:
@@ -10,6 +12,7 @@ with open('config.json', 'r') as c:
 local_server = True
 app = Flask(__name__)
 app.secret_key = 'super-secret-key'
+app.config['UPLOAD_FOLDER'] = params['upload_location']
 app.config.update(
     MAIL_SERVER='smtp.gmail.com',
     MAIL_PORT='465',
@@ -104,9 +107,18 @@ def edit(sno):
                 post.img_file = img_file
                 post.date = date
                 db.session.commit()
-                return redirect('/edit/'+sno)
+                return redirect('/edit/' + sno)
         post = Posts.query.filter_by(sno=sno).first()
         return render_template('edit.html', params=params, post=post)
+
+
+@app.route("/uploader", methods=['GET', 'POST'])
+def uploader():
+    if 'user' in session and session['user'] == params['admin_user']:
+        if request.method == 'POST':
+            f = request.files['file1']
+            f.save(os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(f.filename) ))
+            return "Uploaded successfully"
 
 
 @app.route("/contact", methods=['GET', 'POST'])

@@ -15,6 +15,7 @@
     "no_of_posts": 5,
     "login_image": "bootstrap-logo.svg",
     "admin_user": "nizam",
-    "admin_password": "nizam"
+    "admin_password": "nizam",
+    "upload_location": "G:\\Git_Work\\Python\\BlogWithFlask\\static\\assets\\uploadfiles"
   }
 }
