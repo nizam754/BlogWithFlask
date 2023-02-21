@@ -19,10 +19,16 @@
 <div class="container px-4 px-lg-5">
   <div class="row gx-4 gx-lg-5 justify-content-center">
     <div class="col-md-10 col-lg-8 col-xl-7">
+      <h1>Basic Actions</h1>
+      <a href="dashboard">
+        <button class="btn btn-primary">Dashboard Home</button></a
+      >
+      <a href="/logout"> <button class="btn btn-primary">Logout</button></a>
+      <hr/>
       <h1>Add/Edit Post</h1>
       <form
         id="contactForm"
-        action="/edit/{{sno}}"
+        action="/edit/{{post.sno}}"
         method="post"
         data-sb-form-api-token="API_TOKEN"
       >
@@ -34,6 +40,7 @@
             type="text"
             placeholder="Enter your title..."
             data-sb-validations="required"
+            value="{{post.title}}"
           />
           <label for="name">Title</label>
           <div class="invalid-feedback" data-sb-feedback="name:required">
@@ -48,6 +55,7 @@
             type="text"
             placeholder="Enter your Tagline..."
             data-sb-validations="required"
+            value="{{post.tagline}}"
           />
           <label for="email">Tagline</label>
           <div class="invalid-feedback" data-sb-feedback="email:required">
@@ -65,6 +73,7 @@
             type="text"
             placeholder="Enter your phone Slug..."
             data-sb-validations="required"
+            value="{{post.slug}}"
           />
           <label for="phone">Slug</label>
           <div class="invalid-feedback" data-sb-feedback="phone:required">
@@ -79,7 +88,7 @@
             placeholder="Enter your Content here..."
             style="height: 12rem"
             data-sb-validations="required"
-          ></textarea>
+          >{{post.content}}</textarea>
           <label for="message">Content</label>
           <div class="invalid-feedback" data-sb-feedback="message:required">
             A Content is required.
@@ -92,9 +101,11 @@
             id="img_file"
             name="img_file"
             placeholder="Image Filename"
+            value="{{post.img_file}}"
             style="height: 5rem"
           ></input>
           <label>Image File</label>
+          <p class="help-block text-danger"></p>
         </div>
         <br />
         <!-- Submit success message-->

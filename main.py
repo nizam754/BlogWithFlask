@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session
+from flask import Flask, render_template, request, session, redirect
 from flask_sqlalchemy import SQLAlchemy
 from flask_mail import Mail
 import json
@@ -95,8 +95,18 @@ def edit(sno):
                 post = Posts(title=box_title, slug=slug, content=content, tagline=tline, img_file=img_file, date=date)
                 db.session.add(post)
                 db.session.commit()
-
-        return render_template('edit.html', params=params, sno=sno)
+            else:
+                post = Posts.query.filter_by(sno=sno).first()
+                post.title = box_title
+                post.slug = slug
+                post.content = content
+                post.tagline = tline
+                post.img_file = img_file
+                post.date = date
+                db.session.commit()
+                return redirect('/edit/'+sno)
+        post = Posts.query.filter_by(sno=sno).first()
+        return render_template('edit.html', params=params, post=post)
 
 
 @app.route("/contact", methods=['GET', 'POST'])
