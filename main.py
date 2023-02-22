@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, session, redirect
 from flask_sqlalchemy import SQLAlchemy
-from werkzeug import secure_filename
+from werkzeug.utils import secure_filename
 from flask_mail import Mail
 import json
 import os
@@ -117,8 +117,14 @@ def uploader():
     if 'user' in session and session['user'] == params['admin_user']:
         if request.method == 'POST':
             f = request.files['file1']
-            f.save(os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(f.filename) ))
+            f.save(os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(f.filename)))
             return "Uploaded successfully"
+
+
+@app.route("/logout")
+def logout():
+    session.pop('user')
+    return redirect('/dashboard')
 
 
 @app.route("/contact", methods=['GET', 'POST'])

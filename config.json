@@ -16,6 +16,6 @@
     "login_image": "bootstrap-logo.svg",
     "admin_user": "nizam",
     "admin_password": "nizam",
-    "upload_location": "G:\\Git_Work\\Python\\BlogWithFlask\\static\\assets\\uploadfiles"
+    "upload_location": "C:\\Users\\Nizam\\Documents\\PYTHON_PROJECT\\BlogWithFlask\\static\\assets\\uploadfiles"
   }
 }
