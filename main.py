@@ -174,7 +174,7 @@ def contact():
             recipients=[params['gmail-user']],
             body=message + "\n" + phone
         )
-        
+
         flash("Thanks for submitting your details. We will get back to you soon", "success")
     return render_template('contact.html', params=params)
 
