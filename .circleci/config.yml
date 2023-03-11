@@ -1,7 +1,7 @@
 version: 2
 jobs:
   build:
-    working_directory: /dockerapp
+    working_directory: /BlogWithFlask
     docker:
       - image: docker:17.05.0-ce-git
     steps:
@@ -17,7 +17,7 @@ jobs:
           name: Push application Docker image
           command: |
             docker login -e $DOCKER_HUB_EMAIL -u $DOCKER_HUB_USER_ID -p $DOCKER_HUB_PWD
-            docker tag dockerapp_dockerapp $DOCKER_HUB_USER_ID/dockerapp:$CIRCLE_SHA1
-            docker tag dockerapp_dockerapp $DOCKER_HUB_USER_ID/dockerapp:latest
-            docker push $DOCKER_HUB_USER_ID/dockerapp:$CIRCLE_SHA1
-            docker push $DOCKER_HUB_USER_ID/dockerapp:latest
+            docker tag BlogWithFlask_BlogWithFlask $DOCKER_HUB_USER_ID/BlogWithFlask:$CIRCLE_SHA1
+            docker tag BlogWithFlask_BlogWithFlask $DOCKER_HUB_USER_ID/BlogWithFlask:latest
+            docker push $DOCKER_HUB_USER_ID/BlogWithFlask:$CIRCLE_SHA1
+            docker push $DOCKER_HUB_USER_ID/BlogWithFlask:latest
